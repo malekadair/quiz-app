@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="8-ball.png" type="image/icon" />
+    <title>Pool Quiz</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="main-div">
+        <header>
+            <h1 class="title">Billiard Quiz</h1>
+        </header>
+        <main class="content">
+            <div class="js-first" data-page="start">
+                <h2>Are you a Pool-Shark?</h2>
+                <p>In this quiz, we're going to test your knowledge on the game of Billiards.</p>
+                <p>Are you ready to get started?</p>
+                <button class="js-start-quiz">Start Quiz</button>
+            </div>
+            <div class="js-second hidden" data-page="question">
+                <form class="js-form" data-page="question">
+                    <fieldset>
+                        <legend>When was the first game of billiards played?</legend>
+                        <div>
+                            <input type="radio" name="answer" id="answer1" />
+                            <label for="answer1">2012<label>
+                        </div>
+                        <div>
+                            <input type="radio" name="answer" id="answer2" />
+                            <label for="answer2">200 BC<label>
+                        </div>
+                        <div>
+                            <input type="radio" name="answer" id="answer3" />
+                            <label for="answer3">200 AD<label>
+                        </div>
+                        <div>
+                            <input type="radio" name="answer" id="answer4" />
+                            <label for="answer4">The 15th Century<label>
+                        </div>
+                        <button type="submit" class="btn js-submit">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="hidden js-third" data-page="feedback" >
+                <h2>Better luck next time!</h2>
+                <p>The first game of Billiards was actually played in the 15th century.</p>
+                <button class="btn js-next-question">Next Question</button>
+            </div>
+            <div class="hidden js-fourth" data-page="finish" >
+                <h2>You've completed the quiz!</h2>
+                <p>You got 8 out of 10 questions correct!</p>
+                <p>Do you want to try again?</p>
+                <button class="btn js-start-over">Start Over</button>
+            </div>
+                
+        </main>
+        <footer>
+            <h3 class="score">Your score:</h3>
+            <p>6 correct, 3 incorrect</p>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="index.js"></script>
+        <script src="questions.js"></script>
+    </div>
+</body>
+</html> 
