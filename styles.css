@@ -50,12 +50,12 @@ body {
     padding: 30px;
     margin: 50px;
 }
-/* 
-.hidden {
+
+/* .hidden {
     display: none;
 } */
 
-.content {
+.content, .title {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,12 +66,23 @@ h1 {
     padding: 20px;
     
 }
-.main-div {
+
+header, .js-form, footer, .js-start, .js-results{
+    background-color: white;
+    border: black 4px solid;
+    margin: 10px 5px;
+    padding: 30px;
+}
+
+footer
+
+/* .main-div {
     background-color: white;
     border: black 4px solid;
     height: 100%;
     padding: 30px;
-}
+} */
+
 
 .title {
     text-align: center;
