@@ -44,6 +44,9 @@ table {
 
 
 /*---------------*/
+html {
+    font-family: "Roboto", sans-serif;
+}
 
 body {
     background-color: gray;
@@ -51,11 +54,7 @@ body {
     margin: 50px;
 }
 
-/* .hidden {
-    display: none;
-} */
-
-.content, .title {
+main, .title {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,12 +65,41 @@ h1 {
     padding: 20px;
     
 }
-
-header, .js-form, footer, .js-start, .js-results{
+.container {
     background-color: white;
     border: black 4px solid;
     margin: 10px 5px;
     padding: 30px;
+    width: auto;
+}
+/* header, .js-form, footer, .js-start, .js-results{
+    background-color: white;
+    border: black 4px solid;
+    margin: 10px 5px;
+    padding: 30px;
+} */
+button {
+    margin-top:10px;
+    height: auto;
+    font-size: 15px;
+    font-weight: 650;
+    text-align: center;
+    color:black;
+    background: rgb(212, 212, 212);
+    border: black solid 2px;
+    cursor: pointer;
+    margin-bottom: 0;
+    border-radius:3px;
+    padding: 8px 16px;
+    float: right;
+  }
+
+.pCorrect{
+    color: green;
+}
+
+.pIncorrect{
+    color: red;
 }
 
 footer
