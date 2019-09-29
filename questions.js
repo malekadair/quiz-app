@@ -63,30 +63,30 @@ const QUESTIONS = [
         ]
     },
     {
-        question: "",
+        question: "What is the purpose of applying chalk to a pool cue's tip?",
         ANSWERS: [
-            {ans: "", correct: false},
-            {ans: "", correct: true},
-            {ans: "", correct: false},
-            {ans: "", correct: false},
+            {ans: "To protect the cue ball from damage", correct: false},
+            {ans: "To get better spin on the cue-ball", correct: true},
+            {ans: "To make the pool cue look better", correct: false},
+            {ans: "To keep bugs away", correct: false},
         ]
     },
     {
-        question: "",
+        question: "The game of pool originially evolved from a game that was played on what surface?",
         ANSWERS: [
-            {ans: "", correct: false},
-            {ans: "", correct: true},
-            {ans: "", correct: false},
-            {ans: "", correct: false},
+            {ans: "Carpet", correct: false},
+            {ans: "Frozen bodies of water", correct: false},
+            {ans: "Lawns", correct: true},
+            {ans: "Dance floors", correct: false},
         ]
     },
     {
-        question: "",
+        question: "What's another term for the spin applied to a cue-ball?",
         ANSWERS: [
-            {ans: "", correct: false},
-            {ans: "", correct: true},
-            {ans: "", correct: false},
-            {ans: "", correct: false},
+            {ans: "Spinny-spin", correct: false},
+            {ans: "English", correct: true},
+            {ans: "Flow", correct: false},
+            {ans: "Russian", correct: false},
         ]
     }
 ]
