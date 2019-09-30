@@ -3,8 +3,8 @@ let incorrectCount = 0;
 let questionIndex = 0;
 let currentView;
 
-
 function anyButtonListen(){
+//depending on the current "view", the button will call different functions when pressed.
     $('main').on('click','.js-btn', function(e){
         e.preventDefault()
 
@@ -27,17 +27,20 @@ function anyButtonListen(){
     })
 }
 function disableForm(){
+//this function will disallow user from changing selection while receiving feedback on their submitted answer
     $('input').prop('disabled', true)
 }
 
 function resetVariables(){
+//will set all counters back to 0
     correctCount = 0;
     incorrectCount = 0;
     questionIndex = 0;
 }
+
 function loadStart () {
+//will render start screen at initial loading of program, or if user opts into restarting the quiz.
     resetVariables()
-    
     currentView = 'start';
 
     $('main').html(`
@@ -47,18 +50,11 @@ function loadStart () {
         <p>Are you ready to get started?</p>
         <button class="js-btn">Start Quiz</button>
     </section>`)
-    
 }
 
 function loadQuestion () {
+//builds the HTML based on data pulled from questions.js file. Then sets it to the <main>'s HTML 
     currentView = 'question'
-
-    // for (let i = 0; i< ANSWERS.length; i++){
-    //     <div class="${QUESTIONS[questionIndex].ANSWERS[0].correct}">
-    //         <input type="radio" name="answer" id="ans1" value="${QUESTIONS[questionIndex].ANSWERS[i].correct}"/>
-    //         <label for="ans1">${QUESTIONS[questionIndex].ANSWERS[i].ans}<label>
-    //     </div>
-    // }
     let answerArray = QUESTIONS[questionIndex].ANSWERS
 
     $('main').html(`
@@ -93,13 +89,10 @@ function loadQuestion () {
 }
 
 function checkAnswerCorrect(){
-
-    
-//check to see if user's input is correct or not by taking it's 
+//checks to see if user's input is correct or incorrect and calling updateScore function. Also disables the radio button inputs until the user has moved onto the next question.
     let answerVal = $('input[name=answer]:checked').val()
     if (!answerVal){
         alert('You must make a selection.');
-        
     } else if (answerVal === "true"){
         currentView = 'correct'
         let trueOrFalse = true;
@@ -111,10 +104,13 @@ function checkAnswerCorrect(){
     }
     disableForm()
 }
+
 function giveFeedback(isCorrect){
+//give's user feedback as to whether or not they answered correctly. If correct, their answer will be highlited in green. If incorrect, their answer will be highlighted in red and the correct answer will be highlighted in green. 
+//Also changes the text of the button once they have reached the final question.
+//and calls function to add 1 to index
 
     currentView = 'feedback'
-
 
     if (isCorrect){
         $('div .true').css('background-color', '#baffba').css('border', 'green solid 2px').css('border-radius', '4px')
@@ -125,7 +121,6 @@ function giveFeedback(isCorrect){
 
         $('div .true').css('background-color', '#baffba').css('border', 'green solid 2px').css('border-radius', '4px')
         $('div .true').append('<p class="pCorrect">This is the Correct Answer.</p>')
-        
     }
     $('div .true').css('background-color', '#baffba').css('border', 'green solid 2px').css('border-radius', '4px')
 
@@ -135,19 +130,20 @@ function giveFeedback(isCorrect){
         $('.js-form button').text('Next Question')
     }
 
-    
     updateQuestionIndex()
 }
 function updateScore(isCorrect){
-//if isCorrect = true, correct++ else, incorrect++
+//updates the variables used to keep track of the user's score throughout the quiz. If they answered correctly, correctCount++. If incorrect, incorrectCount++
     isCorrect ? correctCount++ : incorrectCount++;
     $('footer').html(`<h3 class="score">Your score:</h3>
     <p>${correctCount} correct, out of ${questionIndex+1} so far.</p>`)
 }
 function updateQuestionIndex(){
+//adds one to questionIndex Variable
     questionIndex++;
 }
 function loadResults(){
+//will load results which displays the user's final score after completing all questions.
     currentView = 'results'
     $('main').html(`
     <section class="js-results container" data-page="finish" >
@@ -158,8 +154,9 @@ function loadResults(){
     </section>`)
 }
 $(() => {
+//loads appropriate functions once program is ready.
     loadStart();
     anyButtonListen();
 })
 
-// loadStart>loadQuestion>checkAnswerCorrect>giveFeedback>load next question or loadResults
+//expected sequence: loadStart>loadQuestion>checkAnswerCorrect>giveFeedback>load next question or loadResults
