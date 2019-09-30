@@ -46,12 +46,14 @@ table {
 /*---------------*/
 html {
     font-family: "Roboto", sans-serif;
+    
 }
 
 body {
     background-color: gray;
     padding: 30px;
     margin: 50px;
+
 }
 
 main, .title {
@@ -68,18 +70,15 @@ h1 {
 .container {
     background-color: white;
     border: black 4px solid;
+    border-radius: 10px;
     margin: 10px 5px;
     padding: 30px;
     width: auto;
 }
-/* header, .js-form, footer, .js-start, .js-results{
-    background-color: white;
-    border: black 4px solid;
-    margin: 10px 5px;
-    padding: 30px;
-} */
+
 button {
     margin-top:10px;
+    margin-bottom: 0;
     height: auto;
     font-size: 15px;
     font-weight: 650;
@@ -88,10 +87,11 @@ button {
     background: rgb(212, 212, 212);
     border: black solid 2px;
     cursor: pointer;
-    margin-bottom: 0;
     border-radius:3px;
     padding: 8px 16px;
-    float: right;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 .pCorrect{
@@ -110,7 +110,6 @@ footer
     height: 100%;
     padding: 30px;
 } */
-
 
 .title {
     text-align: center;

@@ -23,14 +23,21 @@ function anyButtonListen(){
                 : loadQuestion();
         } else {
             loadStart()
-            correctCount = 0;
-            incorrectCount = 0;
-            questionIndex = 0;
         }
     })
 }
+function disableForm(){
+    $('input').prop('disabled', true)
+}
 
+function resetVariables(){
+    correctCount = 0;
+    incorrectCount = 0;
+    questionIndex = 0;
+}
 function loadStart () {
+    resetVariables()
+    
     currentView = 'start';
 
     $('main').html(`
@@ -46,26 +53,34 @@ function loadStart () {
 function loadQuestion () {
     currentView = 'question'
 
+    // for (let i = 0; i< ANSWERS.length; i++){
+    //     <div class="${QUESTIONS[questionIndex].ANSWERS[0].correct}">
+    //         <input type="radio" name="answer" id="ans1" value="${QUESTIONS[questionIndex].ANSWERS[i].correct}"/>
+    //         <label for="ans1">${QUESTIONS[questionIndex].ANSWERS[i].ans}<label>
+    //     </div>
+    // }
+    let answerArray = QUESTIONS[questionIndex].ANSWERS
+
     $('main').html(`
 <section class="js-question container" data-page="question">
     <form class="js-form" data-page="question">
         <fieldset>
             <legend>Question #${questionIndex + 1} - ${QUESTIONS[questionIndex].question} </legend>
-            <div class="${QUESTIONS[questionIndex].ANSWERS[0].correct}">
-                <input type="radio" name="answer" id="ans1" value="${QUESTIONS[questionIndex].ANSWERS[0].correct}"/>
-                <label for="ans1">${QUESTIONS[questionIndex].ANSWERS[0].ans}<label>
+            <div class="${answerArray[0].correct}">
+                <input type="radio" name="answer" id="ans1" value="${answerArray[0].correct}"/>
+                <label for="ans1">${answerArray[0].ans}<label>
             </div>
-            <div class="${QUESTIONS[questionIndex].ANSWERS[1].correct}">
-                <input type="radio" name="answer" id="ans2" value="${QUESTIONS[questionIndex].ANSWERS[1].correct}"/>
-                <label for="ans2">${QUESTIONS[questionIndex].ANSWERS[1].ans}<label>
+            <div class="${answerArray[1].correct}">
+                <input type="radio" name="answer" id="ans2" value="${answerArray[1].correct}"/>
+                <label for="ans2">${answerArray[1].ans}<label>
             </div>
-            <div class="${QUESTIONS[questionIndex].ANSWERS[2].correct}">
-                <input type="radio" name="answer" id="ans3" value="${QUESTIONS[questionIndex].ANSWERS[2].correct}"/>
-                <label for="ans3">${QUESTIONS[questionIndex].ANSWERS[2].ans}<label>
+            <div class="${answerArray[2].correct}">
+                <input type="radio" name="answer" id="ans3" value="${answerArray[2].correct}"/>
+                <label for="ans3">${answerArray[2].ans}<label>
             </div>
-            <div class="${QUESTIONS[questionIndex].ANSWERS[3].correct}">
-                <input type="radio" name="answer" id="ans4" value="${QUESTIONS[questionIndex].ANSWERS[3].correct}"/>
-                <label for="ans4">${QUESTIONS[questionIndex].ANSWERS[3].ans}<label>
+            <div class="${answerArray[3].correct}">
+                <input type="radio" name="answer" id="ans4" value="${answerArray[3].correct}"/>
+                <label for="ans4">${answerArray[3].ans}<label>
             </div>
             <button type="submit" class="js-btn js-submit">Submit</button>
         </fieldset>
@@ -73,15 +88,18 @@ function loadQuestion () {
 </section>
 <footer class="container">
     <h3 class="score">Your score:</h3>
-    <p>${correctCount} correct, ${incorrectCount} incorrect</p>
+    <p>${correctCount} correct, out of ${questionIndex} so far.</p>
 </footer>`)
 }
 
 function checkAnswerCorrect(){
+
+    
 //check to see if user's input is correct or not by taking it's 
     let answerVal = $('input[name=answer]:checked').val()
     if (!answerVal){
-        alert('Must make a selection.')
+        alert('You must make a selection.');
+        
     } else if (answerVal === "true"){
         currentView = 'correct'
         let trueOrFalse = true;
@@ -91,14 +109,13 @@ function checkAnswerCorrect(){
         let trueOrFalse = false;
         updateScore(trueOrFalse)
     }
+    disableForm()
 }
 function giveFeedback(isCorrect){
-//call checkAnswerCorrect() function to find out whether or not user was correct
-//if the answer was correct, highlight user's answer in green box with light green background and tell user "correct!". Then add 1 to correctCount variable by calling updateScore (true)
-//if the answer was incorrect,highlight user's answer in red box with light red background and tell user "sorry, that is wrong!" and highlight correct answer in green box with light green background. Then add 1 to incorrectCount variable by calling updateScore (false)
 
     currentView = 'feedback'
-    
+
+
     if (isCorrect){
         $('div .true').css('background-color', '#baffba').css('border', 'green solid 2px').css('border-radius', '4px')
         $('div .true').append('<p class="pCorrect">Correct!</p>')
@@ -125,7 +142,7 @@ function updateScore(isCorrect){
 //if isCorrect = true, correct++ else, incorrect++
     isCorrect ? correctCount++ : incorrectCount++;
     $('footer').html(`<h3 class="score">Your score:</h3>
-    <p>${correctCount} correct, ${incorrectCount} incorrect</p>`)
+    <p>${correctCount} correct, out of ${questionIndex+1} so far.</p>`)
 }
 function updateQuestionIndex(){
     questionIndex++;
@@ -135,7 +152,7 @@ function loadResults(){
     $('main').html(`
     <section class="js-results container" data-page="finish" >
         <h2>You've completed the quiz!</h2>
-        <p>You got ${correctCount} out of 10 questions correct!</p>
+        <p>You got ${correctCount} out of ${QUESTIONS.length} questions correct!</p>
         <p>Do you want to try again?</p>
         <button class="js-btn js-start-over">Start Over</button>
     </section>`)
