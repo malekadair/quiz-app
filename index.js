@@ -83,8 +83,8 @@ function loadQuestion () {
     </form>
 </section>
 <footer class="container">
-    <h3 class="score">Your score:</h3>
-    <p>${correctCount} correct, out of ${questionIndex} so far.</p>
+    <h3 class="score">Your score: ${correctCount}</h3>
+    <p>Question ${questionIndex + 1} of ${QUESTIONS.length}</p>
 </footer>`)
 }
 
@@ -135,8 +135,8 @@ function giveFeedback(isCorrect){
 function updateScore(isCorrect){
 //updates the variables used to keep track of the user's score throughout the quiz. If they answered correctly, correctCount++. If incorrect, incorrectCount++
     isCorrect ? correctCount++ : incorrectCount++;
-    $('footer').html(`<h3 class="score">Your score:</h3>
-    <p>${correctCount} correct, out of ${questionIndex+1} so far.</p>`)
+    $('footer').html(`<h3 class="score">Your score: ${correctCount}</h3>
+    <p>Question ${questionIndex + 1} of ${QUESTIONS.length}</p>`)
 }
 function updateQuestionIndex(){
 //adds one to questionIndex Variable
